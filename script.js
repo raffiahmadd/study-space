@@ -83,3 +83,24 @@ if(lightbox) {
         }
     });
 }
+
+// 6. FITUR FULLSCREEN (LAYAR PENUH)
+const fsBtn = document.getElementById('fullscreen-btn');
+
+if (fsBtn) {
+    fsBtn.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+            // Jika belum fullscreen, maka lebarkan
+            document.documentElement.requestFullscreen().catch(err => {
+                console.log(`Gagal membuka mode layar penuh: ${err.message}`);
+            });
+            // Ganti ikon jadi mengecil
+            fsBtn.innerHTML = '<i class="fas fa-compress"></i>';
+        } else {
+            // Jika sudah fullscreen, maka kembalikan seperti semula
+            document.exitFullscreen();
+            // Ganti ikon jadi membesar
+            fsBtn.innerHTML = '<i class="fas fa-expand"></i>';
+        }
+    });
+}

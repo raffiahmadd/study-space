@@ -33,6 +33,9 @@
             <li><a href="#multimedia">Multimedia Interaktif</a></li>
             <li><a href="#pengembang">Pengembang</a></li>
         </ul>
+        <button id="fullscreen-btn" class="fs-btn" title="Mode Layar Penuh" onclick="bukaLayarPenuh()">
+            <i class="fas fa-expand"></i>
+        </button>
         <div class="hamburger">
             <i class="fas fa-bars"></i>
         </div>
@@ -305,5 +308,37 @@
     <a href="#beranda" id="back-to-top"><i class="fas fa-angle-double-up"></i></a>
     
     <script src="script.js"></script>
+
+    <script>
+        function bukaLayarPenuh() {
+            let elem = document.documentElement;
+            let fsBtn = document.getElementById('fullscreen-btn');
+            
+            if (!document.fullscreenElement) {
+                // Buka Fullscreen
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if (elem.webkitRequestFullscreen) { /* Safari */
+                    elem.webkitRequestFullscreen();
+                } else if (elem.msRequestFullscreen) { /* IE11 */
+                    elem.msRequestFullscreen();
+                }
+                // Ubah ikon jadi mengecil
+                fsBtn.innerHTML = '<i class="fas fa-compress"></i>';
+            } else {
+                // Tutup Fullscreen
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) { /* Safari */
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) { /* IE11 */
+                    document.msExitFullscreen();
+                }
+                // Ubah ikon jadi membesar
+                fsBtn.innerHTML = '<i class="fas fa-expand"></i>';
+            }
+        }
+    </script>
+    
 </body>
 </html>
